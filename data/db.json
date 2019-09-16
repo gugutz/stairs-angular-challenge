@@ -1,0 +1,32 @@
+{
+  "guests": [
+    {
+      "id": "b9dbc254-7382-480d-86d3-3a4c24eabd7d",
+      "name": "Matheus",
+      "email": "matheus@email.com",
+      "address": "R Teste, 3",
+      "city": "São José",
+      "state": "SC",
+      "countryOfOrigin": "Brasil",
+      "zipcode": "33333333",
+      "document": "44444444433",
+      "creditCard": "3333444455556666",
+      "phone": "991919491",
+      "valueChargedAtCheckIn": 1000
+    },
+    {
+      "id": "lwe432df-4392-4cee-84sw-3349dsd394dk",
+      "name": "Ivo",
+      "email": "matheus@email.com",
+      "address": "R Teste, 3",
+      "city": "São José",
+      "state": "SC",
+      "countryOfOrigin": "Brasil",
+      "zipcode": "88888888",
+      "document": "44444444433",
+      "creditCard": "3333444455556666",
+      "phone": "991919491",
+      "valueChargedAtCheckIn": 1000
+    }
+  ]
+}
