@@ -1,39 +1,26 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { GuestStore } from "../guest-store";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-guest-details",
   templateUrl: "./guest-details.component.html",
-  styleUrls: ["./guest-details.component.css"],
-  template: `
-    <app-form (formData)="getFormData($event)"> </app-form>
-
-    <div class="container">
-      <a
-        class="nav-link float-left"
-        href="#"
-        routerLink="/guest/{{guestId}}/edit"
-        routerLinkActive="active"
-      >
-        <button>Editar</button>
-      </a>
-      <a
-        class="nav-link float-left"
-        href="#"
-        routerLink="/guest/{{guestId}}/delete"
-        routerLinkActive="active"
-      >
-        <button>Excluir</button>
-      </a>
-    </div>
-  `
+  styleUrls: ["./guest-details.component.css"]
 })
-export class GuestDetailsComponent implements OnInit {
+export class GuestDetailsComponent {
   guestId: string;
-  constructor(private route: ActivatedRoute) {}
+  isDetailing = true;
+  guestToDetail: Object;
 
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private location: Location) {
+    const guestStore = new GuestStore();
+    const guests = guestStore.getGuests();
     this.guestId = this.route.snapshot.paramMap.get("id");
-    console.log("guestdetails page guestId: " + this.guestiD);
+    this.guestToDetail = guestStore.findGuest(this.guestId);
+  }
+
+  navigateBack() {
+    this.location.back();
   }
 }

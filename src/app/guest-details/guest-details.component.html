@@ -1,1 +1,28 @@
-<p>guest-details works!</p>
+<app-form [context]="this" [guest]="guestToDetail" [isDetailing]="isDetailing" > </app-form>
+
+<div class="container">
+    <a
+      class="nav-link float-left"
+      href="#"
+      routerLink="/guest/{{guestId}}/edit"
+      routerLinkActive="active"
+    >
+        <button class="btn btn-primary">Editar</button>
+    </a>
+
+    <a
+      class="nav-link float-left"
+      href="#"
+    >
+        <button (click)="navigateBack()" class="btn">Voltar</button>
+    </a>
+
+    <a
+      class="nav-link float-left"
+      href="#"
+      routerLink="/guest/{{guestId}}/delete"
+      routerLinkActive="active"
+    >
+        <button class="btn btn-danger">Excluir</button>
+    </a>
+</div>

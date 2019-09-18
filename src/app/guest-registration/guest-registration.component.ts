@@ -1,41 +1,38 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
+import { GuestStore } from "../guest-store";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-guest-registration",
   templateUrl: "./guest-registration.component.html",
-  styleUrls: ["./guest-registration.component.css"],
-  template: `
-    <app-form (formData)="getFormData($event)"> </app-form>
-
-    <div class="container">
-      <button (click)="registerGuest()" type="submit" class="btn btn-primary">
-        Cadastrar
-      </button>
-    </div>
-  `
+  styleUrls: ["./guest-registration.component.css"]
 })
-export class GuestRegistrationComponent implements OnInit {
+export class GuestRegistrationComponent {
+  guests: Object;
   newGuest: Object;
-  onSubmit() {}
 
-  constructor() {}
-
-  ngOnInit() {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {
+    const guestStore = new GuestStore();
+    this.guests = guestStore.getGuests();
+  }
 
   getFormData(guest: Object) {
     this.newGuest = guest;
   }
-  registerGuest() {
-    const data = window.localStorage.getItem("guests");
-    console.log(data);
-    const guests = JSON.parse(data);
-    console.log(guests);
-    guests.push(this.newGuest);
-    console.log(guests);
-    const updatedGuests = JSON.stringify(guests);
 
-    window.localStorage.setItem("guests", updatedGuests);
-    // this.form.reset(); // reset form to empty
+  registerGuest() {
+    this.guests[this.newGuest.id] = this.newGuest;
+    const guestStore = new GuestStore();
+    guestStore.saveGuestList(this.guests);
+    this.router.navigate([`/guest/${this.newGuest.id}`]);
+  }
+
+  navigateBack() {
+    this.location.back();
   }
 }
