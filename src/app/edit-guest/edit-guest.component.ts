@@ -1,61 +1,43 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import { GuestStore } from "../guest-store";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-edit-guest",
   templateUrl: "./edit-guest.component.html",
-  styleUrls: ["./edit-guest.component.css"],
-  template: `
-    <app-form (formData)="getFormData($event)"> </app-form>
-
-    <div class="container">
-      <button (click)="editGuest()" type="submit" class="btn btn-primary">
-        Editar
-      </button>
-    </div>
-  `
+  styleUrls: ["./edit-guest.component.css"]
 })
-export class EditGuestComponent implements OnInit {
+export class EditGuestComponent {
   // getting the guest id from the URL paramss
-  guest = "testando guest passing values";
+  guestId: string;
+  guests: Object;
   guestToEdit: Object;
   editedGuest: Object;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {
+    const guestStore = new GuestStore();
+    this.guests = guestStore.getGuests();
+    this.guestId = this.route.snapshot.paramMap.get("id");
+    this.guestToEdit = guestStore.findGuest(this.guestId);
+  }
 
   getFormData(guest: Object) {
     this.editedGuest = guest;
   }
 
   editGuest() {
-    const data = window.localStorage.getItem("guests");
-    const guests = JSON.parse(data);
-    // const updatedGuests = guests.map(guest => {
-    //   if (guest.id === this.editedGuest.id) {
-    //     console.log("found the guest inside the map: " + guest.name);
-    //     console.log("editedguest inside map: " + this.editedGuest.name);
-    //     guest = this.editedGuest;
-    //     console.log("found the guest inside the map: " + guest.name);
-    //   }
-    // });
-    // console.log(updatedGuests);
-
-    console.log(this.editedGuest.id);
-    const guestId = this.route.snapshot.paramMap.get("id");
-    console.log(guestId);
-    const guestToEdit = guests.find(guest => {
-      return guest.id === this.editedGuest.id;
-      console.log("guest found: " + guest.id);
-    });
-    guests.pop(guestToEdit);
-    guests.push(this.editedGuest);
-    const stringifiedGuests = JSON.stringify(guests);
-
-    window.localStorage.setItem("guests", stringifiedGuests);
+    this.guests[this.guestId] = this.editedGuest;
+    const guestStore = new GuestStore();
+    guestStore.saveGuestList(this.guests);
+    this.router.navigate([`/guest/${this.guestId}`]);
   }
 
-  constructor(private route: ActivatedRoute) {
-    // this.fillFormData();
+  navigateBack() {
+    this.location.back();
   }
-
-  ngOnInit() {}
 }

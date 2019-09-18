@@ -1,0 +1,16 @@
+<app-form
+  [context]="this"
+  [guest]="guestToEdit"
+  (formData)="getFormData($event)"
+>
+</app-form>
+
+<div class="container">
+    <button (click)="editGuest()" type="submit" class="btn btn-primary mr-3">
+        Editar
+    </button>
+
+    <button (click)="navigateBack()" type="submit" class="btn mr-3">
+        Cancelar
+    </button>
+</div>
