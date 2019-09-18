@@ -15,21 +15,18 @@ import { ListAllGuestsComponent } from "./list-all-guests/list-all-guests.compon
 import { EditGuestComponent } from "./edit-guest/edit-guest.component";
 import { DeleteGuestComponent } from "./delete-guest/delete-guest.component";
 
+import { HttpClientModule } from "@angular/common/http";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+
 const appRoutes: Routes = [
   // { path: "guest/add", component: GuestRegistrationComponent },
   { path: "guest/add", component: GuestRegistrationComponent },
   { path: "guest/:id", component: GuestDetailsComponent },
   { path: "guest/:id/edit", component: EditGuestComponent },
   { path: "guest/:id/delete", component: DeleteGuestComponent },
-  { path: "guests/all", component: ListAllGuestsComponent }
-
-  // {
-  //   path: "heroes",
-  //   component: HeroListComponent,
-  //   data: { title: "Heroes List" }
-  // },
-  // { path: "", redirectTo: "/heroes", pathMatch: "full" }
-  // { path: "**", component: PageNotFoundComponent }
+  { path: "guests/all", component: ListAllGuestsComponent },
+  { path: "", redirectTo: "/guests/all", pathMatch: "full" },
+  { path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -41,7 +38,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     ListAllGuestsComponent,
     EditGuestComponent,
-    DeleteGuestComponent
+    DeleteGuestComponent,
+    PageNotFoundComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -51,7 +49,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
 
   providers: [],
