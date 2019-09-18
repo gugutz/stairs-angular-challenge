@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import { GuestStore } from "../guest-store";
 
 @Component({
   selector: "app-delete-guest",
@@ -7,26 +8,23 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./delete-guest.component.css"]
 })
 export class DeleteGuestComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
+  ngOnInit() {
     this.deleteGuest();
+    this.router.navigate(["/guests/all"]);
   }
 
-  ngOnInit() {}
-
   deleteGuest() {
-    const data = window.localStorage.getItem("guests");
-    const guests = JSON.parse(data);
+    const guestStore = new GuestStore();
+    const guests = guestStore.getGuests();
 
     const guestId = this.route.snapshot.paramMap.get("id");
     console.log(guestId);
-    const guestToDelete = guests.find(guest => {
-      console.log("guest found: " + guest.id);
-      return guest.id === guestId;
-    });
-    guests.pop(guestToDelete);
-    const updatedGuestList = JSON.stringify(guests);
+    const guestToDelete = guestStore.findGuest(guestId);
 
-    window.localStorage.setItem("guests", updatedGuestList);
-    console.log(`Deleted ${this.guestToDelete} successfully`);
+    if (delete guests[guestToDelete.id]) {
+      guestStore.saveGuestList(guests);
+    }
   }
 }
