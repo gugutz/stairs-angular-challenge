@@ -1,8 +1,8 @@
 {
-  "guests": [
-    {
+  "guests": {
+    "b9dbc254-7382-480d-86d3-3a4c24eabd7d": {
       "id": "b9dbc254-7382-480d-86d3-3a4c24eabd7d",
-      "name": "Matheus",
+      "name": "agora foi",
       "email": "matheus@email.com",
       "address": "R Teste, 3",
       "city": "São José",
@@ -14,7 +14,21 @@
       "phone": "991919491",
       "valueChargedAtCheckIn": 1000
     },
-    {
+    "bd304ds5-4325-dds3-4kfg-sdkr3js01834": {
+      "id": "bd304ds5-4325-dds3-4kfg-sdkr3js01834",
+      "name": "Tobias da Silva",
+      "email": "tobias@email.com",
+      "address": "R das Nações, 30",
+      "city": "São José",
+      "state": "SC",
+      "countryOfOrigin": "Brasil",
+      "zipcode": "33333333",
+      "document": "44444444433",
+      "creditCard": "3333444455556666",
+      "phone": "991919491",
+      "valueChargedAtCheckIn": 1000
+    },
+    "lwe432df-4392-4cee-84sw-3349dsd394dk": {
       "id": "lwe432df-4392-4cee-84sw-3349dsd394dk",
       "name": "Ivo",
       "email": "matheus@email.com",
@@ -28,5 +42,5 @@
       "phone": "991919491",
       "valueChargedAtCheckIn": 1000
     }
-  ]
+  }
 }
