@@ -1,61 +1,83 @@
 <div class="container">
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-        <label for="inputId">UUID</label>
+    <form #formGroup="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- <label for="inputId">UUID</label>
+             <input
+             #id
+             formControlName="id"
+             type="text"
+             class="form-control"
+             disabled
+             />
+        -->
+        <label for="name">Nome</label>
         <input
-          #id
-          formControlName="id"
-          type="text"
-          class="form-control"
-          disabled
-        />
-
-        <label for="inputName">Nome Completo</label>
-        <input
-          #name
-          (blur)="onChange(name.value)"
           formControlName="name"
           type="text"
           class="form-control"
           placeholder="Nome"
+          required
         />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+                Name is required.
+            </div>
+        </div>
 
         <label for="inputEmail">Email</label>
         <input
-          #email
           (blur)="onChange(email.value)"
           formControlName="email"
           type="email"
           class="form-control"
           placeholder="Email"
         />
+        <div *ngIf="email.invalid && email.errors.required && (email.dirty || email.touched)"
+             class="alert alert-danger">
+            <div *ngIf="email.errors.required">
+                Email is required.
+            </div>
+            <div *ngIf="email.errors.invalidEmail">
+                O email deve ser válido.
+            </div>
+        </div>
 
-        <label for="inputAddress">Endereço</label>
+        <label for="address">Endereço</label>
         <input
-          #address
           (blur)="onChange(address.value)"
           formControlName="address"
           type="text"
           class="form-control"
           placeholder="Rua X, nnn"
         />
+        <div *ngIf="address.invalid && (address.dirty || address.touched)"
+             class="alert alert-danger">
+            <div *ngIf="address.errors.required">
+                O campo Endereço é obrigatório.
+            </div>
+        </div>
 
         <div class="form-row">
-            <div [formGroup]="formGroup" class="form-group col-md-6">
+            <div [formGroup]="form" class="form-group col-md-6">
                 <label for="inputCity">Cidade</label>
                 <input
-                  #city
                   (blur)="onChange(city.value)"
                   formControlName="city"
                   type="text"
                   class="form-control"
                   placeholder="Cidade"
                 />
+                <div *ngIf="city.invalid && (city.dirty || city.touched)"
+                     class="alert alert-danger">
+                    <div *ngIf="city.errors.required">
+                        O campo Cidade é obrigatório.
+                    </div>
+                </div>
             </div>
 
-            <div [formGroup]="formGroup" class="form-group col-md-4">
+            <div [formGroup]="form" class="form-group col-md-2">
                 <label for="inputState">Estado</label>
                 <select
-                  #state
                   (blur)="onChange(state.value)"
                   formControlName="state"
                   id="inputState"
@@ -91,33 +113,68 @@
                     <option value="TO">Tocantins</option>
                     <option value="EX">Estrangeiro</option>
                 </select>
+                <div *ngIf="state.invalid && (state.dirty || state.touched)"
+                     class="alert alert-danger">
+                    <div *ngIf="state.errors.required">
+                        Você deve escolher um Estado.
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group col-md-2">
-                <label for="inputZip">Zip</label>
+            <div [formGroup]="form" class="form-group col-md-2">
+                <label for="inputCity">País de Origem</label>
                 <input
-                  #zipcode
+                  (blur)="onChange(countryOfOrigin.value)"
+                  formControlName="countryOfOrigin"
+                  type="text"
+                  class="form-control"
+                  placeholder="País"
+                />
+                <div *ngIf="countryOfOrigin.invalid && (countryOfOrigin.dirty || countryOfOrigin.touched)"
+                     class="alert alert-danger">
+                    <div *ngIf="countryOfOrigin.errors.required">
+                        O campo País é obrigatório.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group col-md-2">
+                <label for="inputZip">CEP</label>
+                <input
                   (blur)="onChange(zipcode.value)"
                   formControlName="zipcode"
                   type="text"
                   class="form-control"
                   id="inputZip"
                 />
+                <div *ngIf="zipcode.invalid && (zipcode.dirty || zipcode.touched)"
+                     class="alert alert-danger">
+                    <div *ngIf="zipcode.errors.required">
+                        O campo CEP é obrigatório.
+                    </div>
+                </div>
             </div>
+
         </div>
+
         <div class="form-row">
-            <div [formGroup]="formGroup" class="form-group col-md-6">
+            <div [formGroup]="form" class="form-group col-md-6">
                 <label for="inputDocument">CPF</label>
                 <input
-                  #document
                   (blur)="onChange(document.value)"
                   formControlName="document"
                   type="text"
                   class="form-control"
                   placeholder="Rua X, nnn"
                 />
+                <div *ngIf="document.invalid && (document.dirty || document.touched)"
+                     class="alert alert-danger">
+                    <div *ngIf="document.errors.required">
+                        O campo CPF é obrigatório.
+                    </div>
+                </div>
             </div>
-            <div [formGroup]="formGroup" class="form-group col-md-6">
+            <div [formGroup]="form" class="form-group col-md-6">
                 <label for="inputPhone">Telefone</label>
                 <input
                   #phone
@@ -127,54 +184,58 @@
                   class="form-control"
                   placeholder="Rua X, nnn"
                 />
+                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                     class="alert alert-danger">
+                    <div *ngIf="phone.errors.required">
+                        O campo Telefone é obrigatório.
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Billing information -->
         <div class="form-row">
-            <div [formGroup]="formGroup" class="form-group col-md-6">
+            <div [formGroup]="form" class="form-group col-md-6">
                 <label for="creditCardInput">Cartão de Crédito</label>
                 <input
-                  #creditCard
                   (blur)="onChange(creditCard.value)"
                   formControlName="creditCard"
                   type="text"
                   class="form-control"
                   placeholder="XXXX-XXXX-XXXX-XXXX"
                 />
+                <div *ngIf="creditCard.invalid && (creditCard.dirty || creditCard.touched)"
+                     class="alert alert-danger">
+                    <div *ngIf="creditCard.errors.required">
+                        Você deve inserir um Cartão de Crédito.
+                    </div>
+                </div>
             </div>
-            <div [formGroup]="formGroup" class="form-group col-md-4">
-                <label for="valueChargedAtCheckInInput"
-                >Valor cobrado no check-in</label
-                                          >
-                <input
-                  #valueChargedAtCheckIn
-                  (blur)="onChange(valueChargedAtCheckIn.value)"
-                  formControlName="valueChargedAtCheckIn"
-                  type="text"
-                  class="form-control"
-                  placeholder="R$ x,xxx.xx"
-                />
-            </div>
-            <div class="form-group col-md-2">
-                <label for="inputAddress">CVC</label>
-                <input
-                  #cvc
-                  (blur)="onChange(cvc.value)"
-                  type="text"
-                  class="form-control"
-                  placeholder="xxx"
-                />
+
+            <div [formGroup]="form" class="form-group col-md-4">
+                <label for="valueChargedAtCheckInInput">Valor cobrado no check-in</label>
+                <div class="currency">
+                    <input
+                      (blur)="onChange(valueChargedAtCheckIn.value)"
+                      formControlName="valueChargedAtCheckIn"
+                      type="number" min="0.00" max="10000.00" step="0.01"
+                      class="form-control"
+                      placeholder="x,xxx.xx"
+                    />
+                    <div *ngIf="valueChargedAtCheckIn.invalid && (valueChargedAtCheckIn.dirty || valueChargedAtCheckIn.touched)"
+                         class="alert alert-danger">
+                        <div *ngIf="valueChargedAtCheckIn.errors.required">
+                            O campo Valor Cobrado é obrigatório.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck" />
-                <label class="form-check-label" for="gridCheck">
-                    Desejo receber ofertas e promoções do Hotel X!
-                </label>
-            </div>
-        </div>
     </form>
 </div>
+
+
+
+
+

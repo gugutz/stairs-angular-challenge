@@ -1,0 +1,27 @@
+input.ng-valid,
+input.ng-valid.required {
+  /* background-color: lightgreen; */
+  border: 1px solid lightgreen;
+}
+/* .ng-pending {
+   background-color: transparent;
+   }
+   .ng-invalid:not(form) {
+   background-color: transparent;
+   border: 1px solid lightcoral;
+   }  */
+.currency{
+  display: inline-block;
+  position: relative;
+}
+.currency input{
+  padding-left: 30px;
+}
+.currency:before {
+  position: absolute;
+  content: "R$";
+  left: 5px;
+  top: 7px;
+}
+
+
