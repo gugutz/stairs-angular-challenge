@@ -11,6 +11,7 @@ import { Location } from "@angular/common";
 })
 export class ListAllGuestsComponent {
   guests: Object;
+  guestService;
   error;
 
   constructor(
