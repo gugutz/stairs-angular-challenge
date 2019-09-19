@@ -11,6 +11,6 @@ export class AppComponent {
 
   constructor() {
     const guestStore = new GuestStore();
-    guestStore.seedGuests();
+    guestStore.list();
   }
 }

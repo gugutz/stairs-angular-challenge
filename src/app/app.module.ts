@@ -13,19 +13,23 @@ import { FormComponent } from "./form/form.component";
 import { GuestDetailsComponent } from "./guest-details/guest-details.component";
 import { ListAllGuestsComponent } from "./list-all-guests/list-all-guests.component";
 import { EditGuestComponent } from "./edit-guest/edit-guest.component";
-import { DeleteGuestComponent } from "./delete-guest/delete-guest.component";
 
 import { HttpClientModule } from "@angular/common/http";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
+import { CurrencyPipe } from "@angular/common";
+import { formatCurrency } from "@angular/common";
+
 const appRoutes: Routes = [
   // { path: "guest/add", component: GuestRegistrationComponent },
-  { path: "guest/add", component: GuestRegistrationComponent },
+  { path: "guest/new", component: GuestRegistrationComponent },
   { path: "guest/:id", component: GuestDetailsComponent },
   { path: "guest/:id/edit", component: EditGuestComponent },
-  { path: "guest/:id/delete", component: DeleteGuestComponent },
-  { path: "guests/all", component: ListAllGuestsComponent },
-  { path: "", redirectTo: "/guests/all", pathMatch: "full" },
+  {
+    path: "guests",
+    component: ListAllGuestsComponent
+  },
+  { path: "", component: ListAllGuestsComponent, pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
 
@@ -38,7 +42,6 @@ const appRoutes: Routes = [
     NavbarComponent,
     ListAllGuestsComponent,
     EditGuestComponent,
-    DeleteGuestComponent,
     PageNotFoundComponent
   ],
   imports: [
@@ -53,7 +56,7 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
 
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
