@@ -1,7 +1,6 @@
 <div class="container">
     <app-form (formStatus)="getFormValidity($event)"></app-form>
-    <!-- <app-form></app-form>
-    -->
+
     <button (click)="onSubmit()" type="submit" class="btn btn-primary" [disabled]="!isFormValid">
         Cadastrar
     </button>

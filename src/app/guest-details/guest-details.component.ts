@@ -14,7 +14,6 @@ export class GuestDetailsComponent {
   id: string;
   guestToDetail: Object;
 
-  // @ViewChild(FormComponent, { read: true, static: false }) child: FormComponent;
   @ViewChild(FormComponent, { static: false }) child: FormComponent;
 
   constructor(private route: ActivatedRoute, private location: Location) {}
@@ -29,7 +28,6 @@ export class GuestDetailsComponent {
 
   onDelete(id: string) {
     const guestStore = new GuestStore();
-    console.log("inside delete guest id " + id);
     guestStore.delete(id);
     this.navigateBack();
   }

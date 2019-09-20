@@ -14,7 +14,6 @@ export class GuestRegistrationComponent implements AfterViewInit {
   newGuest;
   isFormValid: boolean;
 
-  // @ViewChild(FormComponent, { read: true, static: false }) child: FormComponent;
   @ViewChild(FormComponent, { static: false }) child: FormComponent;
 
   constructor(
@@ -24,8 +23,6 @@ export class GuestRegistrationComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    console.log("after init value" + this.child.form.valid);
-    console.log(this.child.form.value);
     this.isFormValid = this.child.form.valid;
   }
 
@@ -35,14 +32,11 @@ export class GuestRegistrationComponent implements AfterViewInit {
     this.newGuest = this.child.form.value;
     guestStore.add(this.newGuest);
     const id = this.newGuest.id;
-    this.router.navigate([`/guest/${this.newGuest.id}`]);
+    this.router.navigate([`/guest/${id}`]);
   }
 
   getFormValidity(event: boolean) {
-    console.log("after init value" + this.child.form.valid);
     this.isFormValid = event;
-    console.log("form valid dentro do registro " + event);
-    console.log(event);
   }
 
   navigateBack() {

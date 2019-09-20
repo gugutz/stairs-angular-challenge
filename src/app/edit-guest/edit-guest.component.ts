@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { Component, AfterViewInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { GuestStore } from "../guest-store";
 import { Location } from "@angular/common";
@@ -17,10 +17,7 @@ export class EditGuestComponent implements AfterViewInit {
   guestToEdit: Object;
   isFormValid: boolean;
 
-  // this broke the child instance varble that brings the child form
-  // @ViewChild(FormComponent, { read: true, static: false }) child: FormComponent;
   @ViewChild(FormComponent, { static: true }) child: FormComponent;
-  // form: TemplateRef<any> | null = null;
 
   constructor(
     private router: Router,
@@ -36,9 +33,6 @@ export class EditGuestComponent implements AfterViewInit {
     this.guestToEdit = guestStore.get(this.id);
     this.child.form.setValue(this.guestToEdit);
   }
-  // getFormData(guest: Object) {
-  //   this.editedGuest = guest;
-  // }
 
   onSubmit() {
     this.editedGuest = this.child.form.value;
@@ -48,10 +42,7 @@ export class EditGuestComponent implements AfterViewInit {
   }
 
   getFormValidity(event: boolean) {
-    console.log("after init value" + this.child.form.valid);
     this.isFormValid = event;
-    console.log("form valid dentro do registro " + event);
-    console.log(event);
   }
 
   navigateBack() {

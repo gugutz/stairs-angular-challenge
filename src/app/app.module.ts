@@ -18,10 +18,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
 import { CurrencyPipe } from "@angular/common";
-import { formatCurrency } from "@angular/common";
 
 const appRoutes: Routes = [
-  // { path: "guest/add", component: GuestRegistrationComponent },
   { path: "guest/new", component: GuestRegistrationComponent },
   { path: "guest/:id", component: GuestDetailsComponent },
   { path: "guest/:id/edit", component: EditGuestComponent },
@@ -45,10 +43,7 @@ const appRoutes: Routes = [
     PageNotFoundComponent
   ],
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: false } // <-- disabled angular routing event logs
-    ),
+    RouterModule.forRoot(appRoutes, { enableTracing: false }),
     BrowserModule,
     AppRoutingModule,
     FormsModule,

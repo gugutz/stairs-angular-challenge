@@ -38,7 +38,6 @@ export class GuestStore {
     const guestStore = new GuestStore();
     const guests = this.list();
     guests[id] = guest;
-    console.log("dentrodoadd guest . id: " + guests);
     window.localStorage.setItem("guests", JSON.stringify(guests));
   }
 

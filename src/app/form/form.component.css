@@ -1,15 +1,7 @@
 input.ng-valid,
 input.ng-valid.required {
-  /* background-color: lightgreen; */
   border: 1px solid lightgreen;
 }
-/* .ng-pending {
-   background-color: transparent;
-   }
-   .ng-invalid:not(form) {
-   background-color: transparent;
-   border: 1px solid lightcoral;
-   }  */
 .currency{
   display: inline-block;
   position: relative;
