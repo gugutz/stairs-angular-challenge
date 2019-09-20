@@ -1,51 +1,53 @@
-<div class="mt-20 block">
-    <button (click)="exportGuests()" class="btn btn-lg btn-success btn-block" type="submit">Enviar dados para API</button>
-</div>
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Email</th>
-            <th scope="col">Endereço</th>
-            <th scope="col">Telefone</th>
-            <th scope="col" colspan="3"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <ng-container>
-            <tr *ngFor="let guest of guests | keyvalue">
-                <td>{{ guest.value.name }}</td>
-                <td><a href="mailto:{{guest.value.email}}">{{ guest.value.email }}</a></td>
-                <td>{{ guest.value.address }}</td>
-                <td>{{ guest.value.phone }}</td>
-                <td>
-                    <a
-                      class="float-left mr-2"
-                      href="#"
-                      routerLink="/guest/{{guest.value.id}}"
-                      routerLinkActive="active"
-                    >
-                        <button class="btn btn-sm" type="submit">Detalhes</button>
-                    </a>
-                </td>
-                <td>
-                    <a
-                      class="float-left mr-2"
-                      href="#"
-                      routerLink="/guest/{{guest.value.id}}/edit"
-                      routerLinkActive="active"
-                    >
-                        <button class="btn btn-success btn-sm" type="submit">Editar</button>
-                    </a>
-                </td>
-                <td>
-                    <a
-                      class="float-left mr-2"
-                    >
-                        <button (click)="onDelete(guest.value.id)" class="btn btn-sm btn-danger btn-block" type="submit">Excluir</button>
-                    </a>
-                </td>
+<div class="list-all-wrapper container my-30">
+    <div class="p-20 mx-auto">
+        <button (click)="exportGuests()" class="btn btn-lg btn-success btn-block" type="submit">Enviar dados para API</button>
+    </div>
+    <table class="list-all-table-wrapper table">
+        <thead class="thead-dark">
+            <tr>
+                <th class="d-table-cell" scope="col">Nome</th>
+                <th class="d-none d-sm-none d-md-table-cell" scope="col">Email</th>
+                <th class="d-none d-sm-none d-md-none d-lg-table-cell" scope="col">Endereço</th>
+                <th class="d-none d-sm-none d-md-table-cell" scope="col">Telefone</th>
+                <th class="d-table-cell" scope="col" colspan="3"></th>
             </tr>
-        </ng-container>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <ng-container>
+                <tr *ngFor="let guest of guests | keyvalue">
+                    <td class="d-table-cell">{{ guest.value.name }}</td>
+                    <td class="d-none d-sm-none d-md-table-cell"><a href="mailto:{{guest.value.email}}">{{ guest.value.email }}</a></td>
+                    <td class="d-none d-sm-none d-md-none d-lg-table-cell">{{ guest.value.address }}</td>
+                    <td class="d-none d-sm-none d-md-table-cell">{{ guest.value.phone }}</td>
+                    <td class="px-1">
+                        <a
+                          class="float-left"
+                          href="#"
+                          routerLink="/guest/{{guest.value.id}}"
+                          routerLinkActive="active"
+                        >
+                            <button class="btn btn-sm" type="submit">Detalhes</button>
+                        </a>
+                    </td>
+                    <td class="px-1">
+                        <a
+                          class="float-left"
+                          href="#"
+                          routerLink="/guest/{{guest.value.id}}/edit"
+                          routerLinkActive="active"
+                        >
+                            <button class="btn btn-success btn-sm" type="submit">Editar</button>
+                        </a>
+                    </td>
+                    <td class="px-1">
+                        <a
+                          class="float-left"
+                        >
+                            <button (click)="onDelete(guest.value.id)" class="btn btn-sm btn-danger btn-block" type="submit">Excluir</button>
+                        </a>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
