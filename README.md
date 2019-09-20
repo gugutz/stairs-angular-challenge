@@ -1,32 +1,26 @@
-<<<<<<< HEAD
 # StairsFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+This is my solution to the frontend challenge for Stairs Studio.
+The goal was to create an app that could register and manage guests at a hotel.
+
+It uses Angular 8 and Bootstrap.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Deploying
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To deploy, run `ng build --prod`, and specify `dist/[project-name]` as the publish directory
 
-## Build
+## Live Version
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+I deployed the app on netlify to make the challenge review easier.
 
-## Running unit tests
+It can be accessed on [stairs-frontend-challenge.netlify.com](https://stairs-frontend-challenge.netlify.com/).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Screenshots
 
-## Running end-to-end tests
+![list-all-guests-scree](list-all-screen.png "List All Guests Screen")
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-=======
-# stairs-angular-challenge
-Frontend development challenge for Stairs Studio
->>>>>>> origin/master
