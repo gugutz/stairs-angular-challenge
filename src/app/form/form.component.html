@@ -20,7 +20,7 @@
         <div *ngIf="name.invalid && (name.dirty || name.touched)"
              class="alert alert-danger">
             <div *ngIf="name.errors.required">
-                Name is required.
+                O campo Nome é obrigatório.
             </div>
         </div>
 
@@ -35,7 +35,7 @@
         <div *ngIf="email.invalid && email.errors.required && (email.dirty || email.touched)"
              class="alert alert-danger">
             <div *ngIf="email.errors.required">
-                Email is required.
+                O campo Email é obrigatório.
             </div>
             <div *ngIf="email.errors.invalidEmail">
                 O email deve ser válido.
@@ -145,7 +145,7 @@
                   formControlName="zipcode"
                   type="text"
                   class="form-control"
-                  id="inputZip"
+                  placeholder="XX.XXX-XX"
                 />
                 <div *ngIf="zipcode.invalid && (zipcode.dirty || zipcode.touched)"
                      class="alert alert-danger">
@@ -165,7 +165,7 @@
                   formControlName="document"
                   type="text"
                   class="form-control"
-                  placeholder="Rua X, nnn"
+                  placeholder="XXX-XXX-XXX-XX"
                 />
                 <div *ngIf="document.invalid && (document.dirty || document.touched)"
                      class="alert alert-danger">
@@ -177,12 +177,11 @@
             <div [formGroup]="form" class="form-group col-md-6">
                 <label for="inputPhone">Telefone</label>
                 <input
-                  #phone
                   (blur)="onChange(phone.value)"
                   formControlName="phone"
                   type="text"
                   class="form-control"
-                  placeholder="Rua X, nnn"
+                  placeholder="(xx) xxxxx-xxxx"
                 />
                 <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
                      class="alert alert-danger">
